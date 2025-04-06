@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2ecc71;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #0e0e0e;
+            margin-bottom: 20px;
+        }
+
+        .order-details {
+            margin-bottom: 20px;
+        }
+
+        .order-details p {
+            margin: 10px 0;
+        }
+
+        .detail-label {
+            font-weight: bold;
+            color: #006400;
+        }
+
+        .delivery-info {
+            background-color: #d4fce5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #0e0e0e;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Order Confirmation</h1>
+    </header>
+
+    <div class="container">
+        <h2>Thank You for Your Order!</h2>
+        <div class="order-details">
+            <p><span class="detail-label">Customer Name:</span> <span id="customer-name"></span></p>
+            <p><span class="detail-label">Item Ordered:</span> <span id="item-name"></span></p>
+            <p><span class="detail-label">Quantity:</span> <span id="quantity"></span></p>
+            <p><span class="detail-label">Total:</span> $<span id="total"></span></p>
+            <p><span class="detail-label">Order Type:</span> <span id="delivery-type"></span></p>
+        </div>
+
+        <div class="delivery-info" id="delivery-info">
+            <!-- Delivery info will be populated based on order type -->
+        </div>
+
+        <a href="menu.html" class="back-link">Back to Menu</a>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const customerName = urlParams.get('name');
+        const itemName = urlParams.get('item');
+        const quantity = urlParams.get('quantity');
+        const total = urlParams.get('total');
+        const delivery = urlParams.get('delivery');
+
+        // Display order details
+        document.getElementById('customer-name').textContent = customerName || 'N/A';
+        document.getElementById('item-name').textContent = itemName || 'N/A';
+        document.getElementById('quantity').textContent = quantity || '0';
+        document.getElementById('total').textContent = total || '0.00';
+        document.getElementById('delivery-type').textContent = delivery || 'N/A';
+
+        // Show delivery/pickup information
+        const deliveryInfo = document.getElementById('delivery-info');
+        if (delivery === 'delivery') {
+            deliveryInfo.innerHTML = `
+                <p>Your order will be delivered within 45-60 minutes.</p>
+                <p>Please ensure someone is available to receive the order.</p>
+                <p>Delivery Address: [To be implemented with address form]</p>
+            `;
+        } else {
+            deliveryInfo.innerHTML = `
+                <p>Your order will be ready for pickup in 30 minutes.</p>
+                <p>Please visit our restaurant at: 123 Food Street, Taste City</p>
+            `;
+        }
+    </script>
+</body>
+</html>

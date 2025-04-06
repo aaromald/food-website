@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Delicious Restaurant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #d8fdd7;
+            color: #161616;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2ecc71;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgb(226, 252, 240);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #0f0e0e;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #006400;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #006400;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 200px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #0a0a0a;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you!</p>
+    </header>
+
+    <div class="container">
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+            <p><span class="info-label">Address:</span> 123 Food Street, Taste City, TC 12345</p>
+            <p><span class="info-label">Phone:</span> (555) 123-4567</p>
+            <p><span class="info-label">Email:</span> info@eathealthy.com</p>
+            <p><span class="info-label">Hours:</span> Mon-Sun: 11:00 AM - 10:00 PM</p>
+        </div>
+
+        <form id="contactForm">
+            <div>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
+
+        <a href="menu.html" class="back-link">Back to Menu</a>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            alert(`Thank you for your message, ${name}!\nWe'll get back to you at ${email} soon.\nSubject: ${subject}\nMessage: ${message}`);
+            this.reset(); // Clear the form
+        });
+    </script>
+</body>
+</html>

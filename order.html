@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Your Order</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color:#2ecc71 ;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgb(228, 252, 235);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .order-item {
+            margin-bottom: 20px;
+        }
+
+        .order-item h2 {
+            color: #101010;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #006400;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        button {
+            background-color: #006400;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 200px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #004d00;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #0e0e0e;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Place Your Order</h1>
+    </header>
+
+    <div class="container">
+        <div class="order-item">
+            <h2 id="item-name"></h2>
+            <div class="price" id="item-price"></div>
+        </div>
+
+        <form id="orderForm">
+            <div>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" value="1">
+            </div>
+            <div>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="delivery">Delivery Option:</label>
+                <select id="delivery" name="delivery">
+                    <option value="pickup">Pickup</option>
+                    <option value="delivery">Delivery</option>
+                </select>
+            </div>
+            <button type="submit">Place Order</button>
+        </form>
+
+        <a href="menu.html" class="back-link">Back to Menu</a>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemName = urlParams.get('name');
+        const itemPrice = urlParams.get('price');
+
+        // Display item details
+        document.getElementById('item-name').textContent = itemName || 'Item Not Selected';
+        document.getElementById('item-price').textContent = itemPrice ? `$${itemPrice}` : '$0.00';
+
+        // Form submission handling
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const quantity = document.getElementById('quantity').value;
+            const name = document.getElementById('name').value;
+            const delivery = document.getElementById('delivery').value;
+            const total = (itemPrice * quantity).toFixed(2);
+
+            // Redirect to delivery page with order details
+            window.location.href = `delivery.html?name=${encodeURIComponent(name)}&item=${encodeURIComponent(itemName)}&quantity=${quantity}&total=${total}&delivery=${delivery}`;
+        });</script>
+</body>
+</html>
